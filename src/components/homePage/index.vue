@@ -7,21 +7,22 @@
         </div>
         <div class="navbar">
           <ul>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">全部课程</a></li>
-            <li><a href="#">编程比赛</a></li>
+            <li><span>首页</span></li>
+            <li><span>全部课程</span></li>
+            <li @click="gotoCompetition"><span>编程比赛</span></li>
           </ul>
         </div>
         <div class="personal">
+<!--          <el-button @click="gotonima">点我跳</el-button>-->
           <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>
         </div>
       </nav>
     </header>
     <div class="banner">
-      <div class="banner-in contaier">
+      <div class="banner-in">
         <el-carousel height="420px">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <h3 class="small">{{ item }}</h3>
+          <el-carousel-item v-for="(item, index) in schna" :key="index">
+            <img :src="item" alt="">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -34,7 +35,7 @@
       <div class="recom-bd contaier" style=" display: table;content: none;">
         <ul>
           <li>
-            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0">
+            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/picturetwo.jpg">
             <h5 @click="goToCourseIndex">Python编程语言基础教程</h5>
             <p>适合零基础的同学，学会简单语法和简单编程逻辑思维，掌握调用模块的能力，然后独立完成小型项目。</p>
             <div style="margin-top: 12px;"></div>
@@ -42,14 +43,14 @@
             <span class="star"><el-rate v-model="value1" disabled></el-rate></span>
           </li>
           <li>
-            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0">
+            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/picturetwo.jpg">
             <h5>Python编程语言基础教程</h5>
             <p>适合零基础的同学，学会简单语法和简单编程逻辑思维，掌握调用模块的能力，然后独立完成小型项目。</p>
             <h5>推荐指数:</h5>
             <span class="star"><el-rate v-model="value1" disabled></el-rate></span>
           </li>
           <li>
-            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0">
+            <img style="background-color: #a68b56;height: 150px;width: 400px;border-radius: 20px 20px 0 0" src="../../assets/picturetwo.jpg">
             <h5>Python编程语言基础教程</h5>
             <p>适合零基础的同学，学会简单语法和简单编程逻辑思维，掌握调用模块的能力，然后独立完成小型项目。</p>
             <h5>推荐指数:</h5>
@@ -66,7 +67,7 @@
         <el-row>
           <el-col :span="12">
             <div class="fea-img">
-              <img style="width: 600px;height: 250px;background-color: #a68b56">
+              <img style="width: 600px;height: 250px;background-color: #a68b56" src="../../assets/pictureone.jpg">
             </div>
           </el-col>
           <el-col :span="12">
@@ -171,10 +172,15 @@ export default {
   name: 'index',
   data () {
     return {
-      value1: '5'
+      value1: '5',
+      schna: ['http://58.119.112.11:11028/picture/ai/20191218184552.jpg', 'http://58.119.112.11:11028/picture/ai/20191218184559.jpg', 'http://58.119.112.11:11028/picture/ai/20191218184606.jpg']
     }
   },
   methods: {
+    gotoCompetition: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/codingCompetition')
+    },
     goToCourseIndex: function () {
       console.log('我要跳转界面了')
       this.$router.push('/coursestudy')
@@ -194,13 +200,13 @@ export default {
   }
   header{
     height: 100px;
-    background-color: pink;
+    background-color: white;
     overflow: hidden;
   }
   nav {
-    width: 1700px;
+    width: 1400px;
     height: 60px;
-    background-color: hotpink;
+    background-color: white;
     margin: 0 auto;
     margin-top: 20px;
   }
@@ -219,19 +225,22 @@ export default {
     list-style-type: none;
     margin-left: 150px;
     height: 60px;
+    cursor: pointer;
   }
   .logo img {
     height: 50px;
     width: 150px;
   }
-  .navbar li a {
+  .navbar li span {
     padding:0 8px;
     /*border-bottom: 1px solid red ;*/
     height: 60px;
     display: block;
+    cursor: pointer;
   }
-  .navbar li a:hover {
+  .navbar li span:hover {
     border-bottom: 2px solid #a68b56;
+    cursor: pointer;
   }
   .personal {
     float: right;
@@ -246,6 +255,9 @@ export default {
   .banner-in{
     background-color: #42b983;
   }
+  /*.el-carousel__item:nth-child(1) {*/
+  /*  background-image: url("../../assets/lunboone.jpg");*/
+  /*}*/
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf;
   }
@@ -282,7 +294,7 @@ export default {
     width:400px;
     height: 300px;
     border-radius: 20px;
-    background-color: pink;
+    background-color: #f4f4f4;
     list-style-type: none;
     box-shadow: 0 3px 2px rgba(0,0,0,0.4) ;
     float: left;
@@ -310,7 +322,7 @@ export default {
   }
    .fea-body {
      width: 1400px;
-     background-color: #ff96c5;
+     background-color: white;
      box-shadow: 0 3px 2px rgba(0,0,0,0.4) ;;
      border-radius: 20px;
      margin-top: 15px;

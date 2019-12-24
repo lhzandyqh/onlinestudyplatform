@@ -13,7 +13,7 @@
           </ul>
         </div>
         <div class="personal">
-          <a href="#"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>
+          <a href="#" style="text-decoration:none;color: black"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>
         </div>
       </nav>
     </header>
@@ -76,7 +76,7 @@
         </el-row>
       </div>
       <div v-if="isShow" class="course_content_body">
-        <div class="course_content_item">
+        <div class="course_content_item" @click="gotoClassContent">
           <el-row class="course_content_item_head">
             <div>
               <h3>第一节</h3>
@@ -183,6 +183,10 @@ export default {
   methods: {
     controlShow: function () {
       this.isShow = !this.isShow
+    },
+    gotoClassContent: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/classcontent')
     }
   }
 }
@@ -195,13 +199,13 @@ export default {
   }
   header{
     height: 100px;
-    background-color: pink;
+    background-color: #f4f4f4;
     overflow: hidden;
   }
   nav {
-    width: 1700px;
+    width: 1400px;
     height: 60px;
-    background-color: hotpink;
+    background-color: #f4f4f4;
     margin: 0 auto;
     margin-top: 20px;
   }
@@ -230,6 +234,8 @@ export default {
     /*border-bottom: 1px solid red ;*/
     height: 60px;
     display: block;
+    text-decoration:none;
+    color: black;
   }
   .navbar li a:hover {
     border-bottom: 2px solid #a68b56;
@@ -342,6 +348,7 @@ export default {
   }
   .course_content_item {
     margin: 30px;
+    cursor: pointer;
   }
   .course_content_item_head h3 {
     display: inline-block;
