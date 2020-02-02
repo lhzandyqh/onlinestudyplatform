@@ -7,9 +7,9 @@
         </div>
         <div class="navbar">
           <ul>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">全部课程</a></li>
-            <li><a href="#">编程比赛</a></li>
+            <li @click="gotoHomePage"><span>首页</span></li>
+            <li><span>全部课程</span></li>
+            <li @click="gotoCompetition"><span>编程比赛</span></li>
           </ul>
         </div>
         <div class="personal">
@@ -41,10 +41,10 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">我的课程</span>
                 </el-menu-item>
-                <el-menu-item index="/userSetting/myClass">
-                  <i class="el-icon-document"></i>
-                  <span slot="title">我的班级</span>
-                </el-menu-item>
+<!--                <el-menu-item index="/userSetting/myClass">-->
+<!--                  <i class="el-icon-document"></i>-->
+<!--                  <span slot="title">我的班级</span>-->
+<!--                </el-menu-item>-->
                 <el-menu-item index="/userSetting/liveLesson">
                   <i class="el-icon-document"></i>
                   <span slot="title">直播课程</span>
@@ -64,6 +64,9 @@
         </el-main>
       </el-container>
     </div>
+    <div class="copyrightContainer">
+      <span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>
+    </div>
   </div>
 </template>
 
@@ -82,6 +85,14 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
+    },
+    gotoCompetition: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/codingCompetition')
+    },
+    gotoHomePage: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/')
     }
   }
 }
@@ -130,14 +141,14 @@ export default {
     height: 50px;
     width: 150px;
   }
-  .navbar li a {
+  .navbar li span {
     padding:0 8px;
     /*border-bottom: 1px solid red ;*/
     height: 60px;
     display: block;
     cursor: pointer;
   }
-  .navbar li a:hover {
+  .navbar li span:hover {
     border-bottom: 2px solid #a68b56;
     cursor: pointer;
   }
@@ -169,5 +180,10 @@ export default {
     border-radius: 20px;
     /*height: 600px;*/
     background-color: white;
+  }
+  .copyrightContainer {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 20px;
   }
 </style>

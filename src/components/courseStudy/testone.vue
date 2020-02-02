@@ -40,7 +40,7 @@
             </div>
             <div class="left_content_body">
               <div style="margin-left: 60px;margin-top: 20px">
-                <span>使用print()函数，以及引号，打印皮卡丘</span>
+                <span>使用print()函数，以及引号，打印"hello world!"</span>
               </div>
               <div style="margin-left: 60px;margin-top: 30px">
                 <img style="width: 300px;height: 300px;background-color: #716b8b;border-radius: 20px">

@@ -7,13 +7,14 @@
         </div>
         <div class="navbar">
           <ul>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">全部课程</a></li>
-            <li><a href="#">编程比赛</a></li>
+            <li @click="gotoHomePage"><span>首页</span></li>
+            <li><span>全部课程</span></li>
+            <li @click="gotoCompetition"><span>编程比赛</span></li>
           </ul>
         </div>
         <div class="personal">
-          <a href="#" style="text-decoration:none;color: black"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>
+          <user-setting-popover></user-setting-popover>
+<!--          <a href="#" style="text-decoration:none;color: black"><img src="../../assets/touxiang.jpg" style="width: 40px;height: 40px;margin-right:20px;border-radius: 50%">杨启航</a>-->
         </div>
       </nav>
     </header>
@@ -24,7 +25,7 @@
             <img src="../../assets/back.png">
           </el-col>
           <el-col :span="1">
-            <span style="display: inline-block;height: 50px;width: 200px;color: #bfbfbf">返回课程中心</span>
+            <span @click="gotoAllclass" style="display: inline-block;height: 50px;width: 200px;color: #bfbfbf">返回课程中心</span>
           </el-col>
         </el-row>
       </div>
@@ -76,7 +77,7 @@
         </el-row>
       </div>
       <div v-if="isShow" class="course_content_body">
-        <div class="course_content_item" @click="gotoClassContent">
+        <div class="course_content_item">
           <el-row class="course_content_item_head">
             <div>
               <h3>第一节</h3>
@@ -86,15 +87,15 @@
           </el-row>
           <el-row :gutter="2" style="margin-top: 10px">
             <el-col :span="12">
-              <div class="course_content_item_first">
-                <img>
+              <div class="course_content_item_first" @click="gotoClassContent">
+                <img src="../../assets/kaimen.png">
                 <h3>学堂 为你打开Python之门</h3>
                 <img style="width: 30px;height: 30px;position: absolute;margin-left: 550px;margin-top: -60px;border-radius: 0;background-color: white" src="../../assets/wancheng.png">
               </div>
             </el-col>
             <el-col :span="12">
               <div class="course_content_item_two" >
-                <img>
+                <img src="../../assets/lianxi.png">
                 <h3>作业：打印HelloWorld！</h3>
                 <img style="width: 30px;height: 30px;position: absolute;margin-left: 370px;margin-top: -50px;border-radius: 0;background-color: white" src="../../assets/wancheng.png">
                 <span>必做练习</span>
@@ -112,8 +113,8 @@
           </el-row>
           <el-row :gutter="2" style="margin-top: 10px">
             <el-col :span="12">
-              <div class="course_content_item_first">
-                <img>
+              <div class="course_content_item_first" @click="gotoClassContentTwo">
+                <img src="../../assets/huahua.png">
                 <h3>学堂 运用Python库画图</h3>
                 <img style="width: 30px;height: 30px;position: absolute;margin-left: 550px;margin-top: -60px;border-radius: 0;background-color: white" src="../../assets/zhengzai.png">
                 <div style="width: 300px;margin-left: 250px;margin-top: 120px">
@@ -123,7 +124,7 @@
             </el-col>
             <el-col :span="12">
               <div class="course_content_item_two" >
-                <img>
+                <img src="../../assets/lianxi.png">
                 <h3>作业：画正方形</h3>
                 <img style="width: 30px;height: 30px;position: absolute;margin-left: 370px;margin-top: -50px;border-radius: 0;background-color: white" src="../../assets/zhengzai.png">
                 <span>必做练习</span>
@@ -142,7 +143,7 @@
           <el-row :gutter="2" style="margin-top: 10px">
             <el-col :span="12">
               <div class="course_content_item_first">
-                <img>
+                <img src="../../assets/yanse.png">
                 <h3>学堂 给圆形添加颜色</h3>
                 <img style="width: 30px;height: 30px;position: absolute;margin-left: 550px;margin-top: -60px;border-radius: 0;background-color: white" src="../../assets/suo.png">
               </div>
@@ -150,7 +151,7 @@
             <el-col :span="12">
               <el-row>
                 <div class="course_content_item_two" >
-                  <img>
+                  <img src="../../assets/lianxi.png">
                   <h3>作业: 不同颜色的圆形</h3>
                   <img style="width: 30px;height: 30px;position: absolute;margin-left: 370px;margin-top: -50px;border-radius: 0;background-color: white" src="../../assets/suo.png">
                   <span>必做练习</span>
@@ -158,7 +159,7 @@
               </el-row>
               <el-row style="margin-top: 10px">
                 <div class="course_content_item_two" >
-                  <img>
+                  <img src="../../assets/lianxi.png">
                   <h3>作业：不同颜色的椭圆形</h3>
                   <img style="width: 30px;height: 30px;position: absolute;margin-left: 370px;margin-top: -50px;border-radius: 0;background-color: white" src="../../assets/suo.png">
                   <span>必做练习</span>
@@ -169,24 +170,45 @@
         </div>
       </div>
     </div>
+    <div class="copyrightContainer">
+      <span style="font-size: 12px">Copyright&nbsp;&nbsp;&nbsp;中科智禾教育大大数据中心   ©2019</span>
+    </div>
   </div>
 </template>
 
 <script>
+import userSettingPopover from '@/components/userSetting/userSettingPopover'
 export default {
   name: 'index',
+  components: { userSettingPopover },
   data () {
     return {
       isShow: true
     }
   },
   methods: {
+    gotoAllclass: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/allclasses')
+    },
     controlShow: function () {
       this.isShow = !this.isShow
     },
     gotoClassContent: function () {
       console.log('我要跳转界面了')
       this.$router.push('/classcontent')
+    },
+    gotoClassContentTwo: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/classcontenttwo')
+    },
+    gotoCompetition: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/codingCompetition')
+    },
+    gotoHomePage: function () {
+      console.log('我要跳转界面了')
+      this.$router.push('/')
     }
   }
 }
@@ -229,15 +251,16 @@ export default {
     height: 50px;
     width: 150px;
   }
-  .navbar li a {
+  .navbar li span {
     padding:0 8px;
     /*border-bottom: 1px solid red ;*/
     height: 60px;
     display: block;
     text-decoration:none;
     color: black;
+    cursor: pointer;
   }
-  .navbar li a:hover {
+  .navbar li span:hover {
     border-bottom: 2px solid #a68b56;
   }
   .personal {
@@ -401,7 +424,7 @@ export default {
     width: 100px;
     height: 100px;
     border-radius: 20px;
-    background-color: #ffbdce ;
+    background-color: #56cdf8;
   }
   .course_content_item_two h3 {
     margin-left: 130px;
@@ -418,5 +441,9 @@ export default {
     margin-left: 150px;
     text-align: center;
     border-radius: 20px;
+  }
+  .copyrightContainer {
+    text-align: center;
+    margin-bottom: 20px;
   }
 </style>
